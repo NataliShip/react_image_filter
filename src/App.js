@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import Header from './components/Header';
 import Image from './components/Image';
+import Settings from './components/Settings';
+import Filter from './components/Filter';
 
 class App extends Component {
 	state = {
@@ -15,6 +17,20 @@ class App extends Component {
 			sepia: 0
 		}
 	}
+
+	handleChange = event => {
+		const setting = event.target.id;
+		const value = event.target.value;
+		const settings = {...this.state.settings, [setting]: value};
+
+		this.setState({selectedFilter: '', settings});
+	}
+
+	resetImg = () => {
+		const settings = {contrast: 100, hue: 0, brightness: 100, saturate: 100, sepia: 0};
+		this.setState({selectedFilter: '', settings});
+	}
+
 	render() {
 
 		const {image, selectedFilter, settings} = this.state;
@@ -23,9 +39,15 @@ class App extends Component {
 			<div className="app">
 				<Header title="Фото фильтры"></Header>
 
-				<main className="main">
-					<Image src={image}/>
-				</main>
+				<section className="content">
+					<Settings settings={settings} handleChange={this.handleChange} resetImg={this.resetImg}/>
+
+					<main className="main">
+						<Filter settings={settings}>
+							<Image src={image}/>
+						</Filter>
+					</main>
+				</section>
 			</div>
 		);
 	}
