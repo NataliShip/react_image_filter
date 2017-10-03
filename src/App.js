@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
+
 import './App.css';
 import Header from './components/Header';
 import Image from './components/Image';
 import Settings from './components/Settings';
 import Filter from './components/Filter';
+import FilterList from './components/FilterList';
+
 
 class App extends Component {
 	state = {
@@ -31,6 +34,10 @@ class App extends Component {
 		this.setState({selectedFilter: '', settings});
 	}
 
+	updateSettings = (selectedFilter, settings) => {
+		this.setState({selectedFilter, settings});
+	}
+
 	render() {
 
 		const {image, selectedFilter, settings} = this.state;
@@ -46,8 +53,15 @@ class App extends Component {
 						<Filter settings={settings}>
 							<Image src={image}/>
 						</Filter>
+
+						<FilterList
+							image={image}
+							settings={settings}
+							selectedFilter={selectedFilter}
+							updateSettings={this.updateSettings}/>
 					</main>
 				</section>
+
 			</div>
 		);
 	}
