@@ -214,3 +214,40 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
 	background: #efc5e9;
 }
+
+
+
+@media screen and (max-width: 770px){
+	.settings .setting label {
+		font-size:12px;
+	}
+}
+
+@media screen and (max-width: 480px){
+	.content {
+		flex-direction: column;
+		height:100%;
+	}
+	.settings .setting label {
+		font-size:14px;
+	}
+	.settings {
+		width: 100%;
+		height: auto;
+		max-width: 480px;
+	}
+	.settings .setting {
+		padding: 0 25px;
+		margin-top: 10px;
+	}
+	.filter-list{
+		flex-direction: column;
+		flex-wrap: wrap;
+		height:300px;
+	}
+	.filter-list .filter{
+		margin:0;
+		margin-bottom:10px;
+	}
+}
+
